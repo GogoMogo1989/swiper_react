@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+
 
 // Import Swiper styles
 import "swiper/css";
@@ -8,11 +9,19 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import "./swiper.css";
+import k from "../../public/assets/kep.jpg"
 
 // import required modules
 import { Pagination, Navigation } from "swiper";
 
-export default function App() {
+const SwiperContainer = ({img}) => {
+
+  const k = img.map(kutya)
+
+  function kutya(x){
+    return x[0].img
+  }
+
   return (
     <>
       <Swiper
@@ -27,18 +36,14 @@ export default function App() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+          {img.map(data =>(
+          <img src={data[0]} alt=""/>
+         ))}
         </SwiperSlide>
       </Swiper>
     </>
+   
   );
 }
+
+export default SwiperContainer
